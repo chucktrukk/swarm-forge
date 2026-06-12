@@ -35,7 +35,14 @@ TARGET="$1"
 MESSAGE_FILE="$3"
 
 find_project_dir() {
-  local git_common_dir
+  local git_common_dir worktree_root
+
+  if worktree_root=$(git -C "$SCRIPT_DIR" rev-parse --show-toplevel 2>/dev/null); then
+    if [[ -f "$worktree_root/.swarmforge/sessions.tsv" && -f "$worktree_root/.swarmforge/tmux-socket" ]]; then
+      echo "$worktree_root"
+      return 0
+    fi
+  fi
 
   if git_common_dir=$(git -C "$SCRIPT_DIR" rev-parse --git-common-dir 2>/dev/null); then
     if [[ "$git_common_dir" != /* ]]; then

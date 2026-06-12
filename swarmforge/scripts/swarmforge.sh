@@ -317,7 +317,7 @@ prepare_worktrees() {
 }
 
 sync_worktree_scripts() {
-  local i worktree_path role_scripts_dir
+  local i worktree_path role_scripts_dir role_state_dir
   for (( i = 1; i <= ${#ROLES[@]}; i++ )); do
     worktree_path="${WORKTREE_PATHS[$i]}"
     if [[ "$worktree_path" == "$WORKING_DIR" ]]; then
@@ -325,8 +325,12 @@ sync_worktree_scripts() {
     fi
 
     role_scripts_dir="$worktree_path/swarmforge/scripts"
+    role_state_dir="$worktree_path/.swarmforge"
     mkdir -p "$role_scripts_dir"
     cp -R "$SCRIPT_DIR/." "$role_scripts_dir/"
+    mkdir -p "$role_state_dir"
+    cp "$SESSIONS_FILE" "$role_state_dir/sessions.tsv"
+    cp "$TMUX_SOCKET_FILE" "$role_state_dir/tmux-socket"
   done
 }
 
