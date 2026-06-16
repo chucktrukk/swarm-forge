@@ -12,7 +12,7 @@
   and shared scripts under `swarmforge/scripts/`.
 
 ## Workflow
-- No batching agents.
+- The cleaner receives coder handoffs in batch mode.
 - Do not create or use Gherkin, IR, acceptance tests, Gherkin mutation, or
   property tests.
 - Use unit tests and language-local verification only.
