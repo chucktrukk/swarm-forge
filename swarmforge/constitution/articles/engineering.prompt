@@ -7,6 +7,17 @@
   - Go: install with `go install`; mutation `github.com/unclebob/mutate4go`, CRAP `github.com/unclebob/crap4go`, DRY `github.com/unclebob/dry4go`.
   - Clojure: install with Clojure CLI/deps.edn; mutation `github.com/unclebob/clj-mutate`, CRAP `github.com/unclebob/crap4clj`, DRY `github.com/unclebob/dry4clj`.
   - Java: install with Maven (`mvn`); mutation `github.com/unclebob/mutate4java`, CRAP `github.com/unclebob/crap4java`, DRY `github.com/unclebob/dry4java`.
+  - PHP/Laravel: install `charliemadison/laravel-swarm` from the private `github.com/chucktrukk/laravel-swarm` Composer VCS repo; it installs `charliemadison/dry4php` from `github.com/chucktrukk/dry4php` and wraps CRAP, DRY, and mutation commands for Laravel projects.
+
+## PHP/Laravel Quality Commands
+- In Laravel projects, run `vendor/bin/laravel-swarm doctor --profile=metrics` before CRAP or DRY work, and `vendor/bin/laravel-swarm doctor --profile=full --swarmforge` before full SwarmForge workflows.
+- If `laravel-swarm` is missing, add Composer VCS repositories for `https://github.com/chucktrukk/dry4php.git` and `https://github.com/chucktrukk/laravel-swarm.git`, then run `composer require --dev charliemadison/laravel-swarm:dev-main`.
+- Use `vendor/bin/laravel-swarm dry --summary --fail-on-duplicates` for Uncle Bob-style structural duplicate detection in PHP.
+- Use `vendor/bin/laravel-swarm crap` for PHPUnit/Pest Crap4J-based CRAP ranking; it requires PHPUnit or Pest plus Xdebug, PCOV, or phpdbg coverage support.
+- Use `vendor/bin/laravel-swarm mutate --changed` for mutation hardening; it uses Infection when installed and otherwise Pest mutation when available.
+- For Laravel Gherkin acceptance work, run `vendor/bin/laravel-swarm acceptance:init`, implement handlers in `tests/Acceptance/AcceptanceSteps.php`, then use `vendor/bin/laravel-swarm acceptance:run <feature>` and `vendor/bin/laravel-swarm acceptance:mutate <feature>`.
+- Laravel acceptance mutation uses Uncle Bob's `Acceptance-Pipeline-Specification` tools cloned under `.laravel-swarm/tools/Acceptance-Pipeline-Specification`; it requires `git` and Babashka `bb`.
+- Private Composer installs require GitHub credentials on the target machine or server.
 
 ## Language Defaults
 - For Clojure projects, prefer Babashka where possible.

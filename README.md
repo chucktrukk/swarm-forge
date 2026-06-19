@@ -61,6 +61,17 @@ SwarmForge runs locally. Before starting a runnable branch, make sure the target
 - Babashka (`bb`)
 - At least one configured agent backend, such as `codex`, `claude`, `copilot`, or `grok`
 
+For PHP/Laravel projects that should participate in the CRAP, DRY, and mutation hardening workflows, install the private Laravel Swarm quality package in the target project:
+
+```sh
+composer config repositories.dry4php vcs https://github.com/chucktrukk/dry4php.git
+composer config repositories.laravel-swarm vcs https://github.com/chucktrukk/laravel-swarm.git
+composer require --dev charliemadison/laravel-swarm:dev-main
+vendor/bin/laravel-swarm doctor --profile=full --swarmforge
+```
+
+The Laravel package provides `vendor/bin/laravel-swarm dry`, `crap`, `mutate`, `acceptance:run`, and `acceptance:mutate` commands for agents. Private Composer installs require GitHub credentials on teammate machines and servers.
+
 ## Getting Started
 
 In the directory where you want to use SwarmForge, choose a runnable branch and pull its contents without creating a Git remote:
