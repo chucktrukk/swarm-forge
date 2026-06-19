@@ -11,7 +11,7 @@
 
 ## PHP/Laravel Quality Commands
 - In Laravel projects, run `vendor/bin/laravel-swarm doctor --profile=metrics` before CRAP or DRY work, and `vendor/bin/laravel-swarm doctor --profile=full --swarmforge` before full SwarmForge workflows.
-- If `laravel-swarm` is missing, add Composer VCS repositories for `https://github.com/chucktrukk/dry4php.git` and `https://github.com/chucktrukk/laravel-swarm.git`, then run `composer require --dev charliemadison/laravel-swarm:dev-main`.
+- If `laravel-swarm` is missing, add Composer VCS repositories for `https://github.com/chucktrukk/dry4php.git` and `https://github.com/chucktrukk/laravel-swarm.git`, then run `composer require --dev charliemadison/laravel-swarm:^0.1`.
 - Use `vendor/bin/laravel-swarm dry --summary --fail-on-duplicates` for Uncle Bob-style structural duplicate detection in PHP.
 - Use `vendor/bin/laravel-swarm crap` for PHPUnit/Pest Crap4J-based CRAP ranking; it requires PHPUnit or Pest plus Xdebug, PCOV, or phpdbg coverage support.
 - Use `vendor/bin/laravel-swarm mutate --changed` for mutation hardening; it uses Infection when installed and otherwise Pest mutation when available.

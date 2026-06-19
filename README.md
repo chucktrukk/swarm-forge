@@ -66,7 +66,7 @@ For PHP/Laravel projects that should participate in the CRAP, DRY, and mutation 
 ```sh
 composer config repositories.dry4php vcs https://github.com/chucktrukk/dry4php.git
 composer config repositories.laravel-swarm vcs https://github.com/chucktrukk/laravel-swarm.git
-composer require --dev charliemadison/laravel-swarm:dev-main
+composer require --dev charliemadison/laravel-swarm:^0.1
 vendor/bin/laravel-swarm doctor --profile=full --swarmforge
 ```
 
